@@ -188,8 +188,35 @@
     }
 
     // ========== State ==========
-    var API='/api/typhoon', REFRESH_MS=300000;
+    // ========== JMA Data Adapter (portable from server.js) ==========
+    var JMA_ENDPOINT='https://www.data.jma.go.jp/multi/data/VPTW60/61_cn_zs.json', REFRESH_MS=300000;
     var map=null, layers=null, data=null, selectedIndex=0, nextRefresh=Date.now()+REFRESH_MS;
+
+    function pn(value){if(value===null||value===undefined||value==='')return null;if(typeof value==='number'&&isFinite(value))return value;var m=String(value).trim().replace(/,/g,'').match(/[-+]?\d+(?:\.\d+)?/);return m?Number(m[0]):null}
+    function normLat(v){var n=pn(v);return n===null?null:/S/i.test(String(v))?-Math.abs(n):n}
+    function normLon(v){var n=pn(v);return n===null?null:/W/i.test(String(v))?-Math.abs(n):n}
+    function dv(v){if(!v)return null;var d=new Date(v);return isNaN(d.getTime())?null:d.toISOString()}
+    function parseInfo(info){
+      var cp=info.centerPart||{},wp=info.windPart||{},clp=info.classPart||{};
+      var lat=normLat(cp.coordinateLat),lon=normLon(cp.coordinateLon),pr=null;
+      if((lat===null||lon===null)&&cp.probabilityCircle){var pc=cp.probabilityCircle;lat=normLat(pc.basePointLat);lon=normLon(pc.basePointLon);if(pc.axis&&pc.axis.radiusKm)pr=pn(pc.axis.radiusKm)}
+      if(lat===null||lon===null)return null;if(Math.abs(lat)>90||Math.abs(lon)>180)return null;
+      return{validAt:dv(info.dateTime),latitude:Number(lat.toFixed(3)),longitude:Number(lon.toFixed(3)),pressureHpa:pn(cp.pressure),windKts:pn(wp.windSpeedKnot),gustKts:pn(wp.windGustSpeedKnot),movementKph:pn(cp.speedKmH),probabilityRadiusKm:pr,intensity:clp.typhoonClassName||clp.intensityAndTyphoonClass||null}
+    }
+    function extractRadii(firstInfo){
+      var r={stormKm:null,galeKm:null};
+      function maxRad(areas){if(!Array.isArray(areas))return null;var a=areas.map(function(x){return pn(x.radiusKm)}).filter(function(n){return n!==null&&n>=1&&n<=2500});return a.length?Math.max.apply(null,a):null}
+      if(firstInfo){r.stormKm=maxRad(firstInfo.warningAreaPart50);r.galeKm=maxRad(firstInfo.warningAreaPart30)}
+      return r;
+    }
+    function adapt(raw){
+      if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('JMA returned an invalid JSON object');
+      var infos=raw.meteorologicalInfos||[],points=[];
+      for(var i=0;i<infos.length;i++){var p=parseInfo(infos[i]);if(p)points.push(p)}
+      if(!points.length)throw new Error('JMA response contains no valid typhoon coordinates');
+      var c=points[0],fc=points.slice(1,10);
+      return{storm:{id:String(raw.number||'2026-09'),name:raw.name||'巴威 BAVI',basin:'西北太平洋',status:c.intensity||null},current:c,forecast:fc,windRadii:extractRadii(infos[0]),source:{provider:'日本气象厅 JMA',endpoint:JMA_ENDPOINT,publishedAt:dv(raw.reportDateTime),fetchedAt:new Date().toISOString()}}
+    }
 
     var $=function(s){return document.querySelector(s)};
     var asDate=function(v){if(!v)return t('na');var d=new Date(v);return isNaN(d.getTime())?t('na'):d.toLocaleString(lang==='en'?'en-US':'zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'})};
@@ -280,14 +307,15 @@
     async function load(){
       var btn=$('#refresh');btn.disabled=true;$('#stateText').textContent=t('connecting');
       try {
-        var r=await fetch(API,{cache:'no-store'}),body=await r.json();
-        if(!r.ok)throw new Error(body.detail||body.error||'接口不可用');
-        data=body;selectedIndex=0;
+        var r=await fetch(JMA_ENDPOINT,{cache:'no-store'}),
+            raw=await r.json();
+        if(!r.ok)throw new Error('JMA returned HTTP '+r.status);
+        var adapted=adapt(raw);
+        data=adapted;selectedIndex=0;
         renderMetrics();renderTimeline();renderMap();renderSelected();
-        var stale=body.meta&&body.meta.stale;
-        $('#stateText').innerHTML=stale?'<span class="amber">'+t('updateFailed')+'</span>':'<span class="good">'+t('updated')+'</span>';
-        var ds=$('#dataState');ds.className='data-state'+(stale?' stale':'');
-        ds.textContent=stale?(body.meta.error||t('staleNote')):t('dataSourcePrefix')+body.source.provider+' · '+t('dataTime')+' '+asDate(body.source.publishedAt)+' · '+t('dataSourcePrefix')+asDate(body.source.fetchedAt);
+        $('#stateText').innerHTML='<span class="good">'+t('updated')+'</span>';
+        var ds=$('#dataState');ds.className='data-state';
+        ds.textContent=t('dataSourcePrefix')+data.source.provider+' · '+t('dataTime')+' '+asDate(data.source.publishedAt)+' · '+t('dataSourcePrefix')+asDate(data.source.fetchedAt);
         nextRefresh=Date.now()+REFRESH_MS;
       } catch(e){
         $('#stateText').innerHTML='<span class="bad">'+t('errorState')+'</span>';
