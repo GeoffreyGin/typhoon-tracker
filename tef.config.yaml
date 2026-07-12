@@ -1,0 +1,20 @@
+app:
+  name: "bavi-typhoon-tracker"
+  namespace: "default"
+  runtime: "nodejs18"
+  handler: "server.handler"
+  description: "巴威 BAVI 台风实时监控"
+release:
+  - name: "production"
+    route:
+      - "/api/typhoon"
+    rewrite:
+      - "/* -> /index.html"
+    static:
+      root: "."
+      prefix: "/"
+      index: "index.html"
+      exclude:
+        - "server.js"
+        - "*.test.js"
+        - "node_modules/**"
