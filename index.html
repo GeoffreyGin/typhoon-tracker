@@ -8,13 +8,13 @@
   <meta property="og:description" content="日本气象厅数据 · 5 分钟更新 · 请以当地主管部门正式预警为准">
   <meta property="og:image" content="/og-bavi.svg">
   <title>巴威 BAVI｜台风信息监控</title>
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ2B8drs/s5p5Xk/1B5dzp4Fj4B6S8=" crossorigin="">
   <style>
     :root{--bg:#06151f;--panel:#0b222e;--panel2:#0e2a37;--line:#295267;--ink:#e6f4f7;--muted:#94b4bd;--cyan:#63e4ed;--amber:#ffc766;--red:#ff726f;--green:#89e2b4}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% 0,#123a4b 0,var(--bg) 46%);color:var(--ink);font:15px/1.45 Inter,"Microsoft YaHei",system-ui,sans-serif}button,a{font:inherit}a{color:var(--cyan)}.skip{position:absolute;left:-999px}.skip:focus{left:10px;top:10px;z-index:99;background:#fff;color:#000;padding:8px}.top{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:12px clamp(18px,4vw,64px);border-bottom:1px solid var(--line);background:#061923e8}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:37px;height:37px;border:2px dashed var(--cyan);border-radius:50%;position:relative;animation:spin 12s linear infinite}.brand-mark:after{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 16px var(--amber)}@keyframes spin{to{transform:rotate(360deg)}}h1{font-size:16px;margin:0;letter-spacing:.7px}.brand small{display:block;color:var(--muted);font-size:11px}.top-actions{display:flex;align-items:center;gap:12px}.source-badge{color:#bceef2;background:#143541;border:1px solid #3c7588;border-radius:999px;padding:5px 9px;font-size:12px}.refresh{border:1px solid #5b9dad;background:#123847;color:#e6faff;border-radius:6px;padding:8px 12px;cursor:pointer;min-height:44px}.refresh:hover{background:#1a4e61}.refresh:disabled{opacity:.55;cursor:wait}.layout{max-width:1480px;margin:auto;padding:22px clamp(16px,3vw,40px) 42px}.status-strip{display:grid;grid-template-columns:1.45fr .8fr .8fr .8fr;gap:10px;margin-bottom:18px}.status-card{background:linear-gradient(145deg,#102d3a,#091e29);border:1px solid var(--line);border-radius:8px;padding:13px 15px;min-height:72px}.status-card label{display:block;color:var(--muted);font-size:12px}.status-card strong{font-size:17px;font-weight:600}.status-card .amber{color:var(--amber)}.status-card .good{color:var(--green)}.status-card .bad{color:var(--red)}.status-card time{font-size:12px;color:#c1d9df}.hero{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,.65fr);gap:18px}.map-shell,.panel{background:linear-gradient(145deg,#0c2733,#081b26);border:1px solid var(--line);border-radius:9px;overflow:hidden}.map-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line)}.map-head h2,.panel h2{margin:0;font-size:14px}.map-head small{color:var(--muted);font-size:11px}.map-wrap{height:515px;position:relative}.map{height:100%;background:#071d28}.map-note{position:absolute;z-index:900;right:10px;bottom:23px;max-width:260px;padding:7px 9px;background:#071923e8;border:1px solid #345568;border-radius:5px;color:#bdd6dc;font-size:11px}.map-empty{position:absolute;inset:0;z-index:800;display:grid;place-items:center;padding:24px;text-align:center;background:#081f2ad9;color:#bfd8de}.map-empty[hidden]{display:none}.side{display:flex;flex-direction:column;gap:18px}.panel{padding:16px}.panel h2{padding-bottom:10px;border-bottom:1px solid #285064}.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 8px;padding-top:12px}.metric label{display:block;color:var(--muted);font-size:11px}.metric b{font-size:19px;font-weight:600}.metric b small{font-size:11px;color:#9ebbc3}.data-state{margin:12px 0 0;padding:9px 10px;border-left:3px solid var(--cyan);background:#0b2e3b;color:#c4e1e7;font-size:12px}.data-state.stale{border-color:var(--amber);color:#ffe0a5}.data-state.error{border-color:var(--red);color:#ffc4c2}.selected{font-size:13px}.selected h3{font-size:18px;margin:2px 0 8px}.selected dl{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0}.selected dt{color:var(--muted);font-size:11px}.selected dd{margin:1px 0 0;font-weight:600}.timeline{margin-top:18px}.timeline-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}.timeline h2{font-size:15px;margin:0}.timeline p{margin:0;color:var(--muted);font-size:12px}.track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(108px,1fr);gap:9px;overflow-x:auto;padding-bottom:6px}.track-item{appearance:none;text-align:left;color:var(--ink);min-height:100px;padding:10px;border:1px solid #315c6e;border-radius:7px;background:#0a242f;cursor:pointer;min-width:44px}.track-item:hover,.track-item:focus,.track-item.active{border-color:var(--amber);background:#14313b;outline:0}.track-item time{display:block;color:#b7d4dc;font-size:11px}.track-item b{display:block;margin:6px 0 2px;font-size:13px}.track-item small{color:var(--muted);font-size:11px}.bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px}.bottom .panel{min-height:168px}.bottom p,.bottom li{color:#bfd4da;font-size:13px}.official-list{margin:0;padding:0;list-style:none}.official-list li{padding:9px 0;border-bottom:1px solid #244858}.official-list li:last-child{border:0}.official-list small{display:block;color:var(--muted);margin-top:2px}.notice{border-left:3px solid var(--amber);padding-left:11px}.footer{border-top:1px solid var(--line);color:#91b0ba;font-size:12px;padding:17px max(16px,calc((100vw - 1400px)/2));background:#05141d}.footer strong{color:#ffe0a0}.leaflet-container{font:12px/1.35 Inter,"Microsoft YaHei",sans-serif}.leaflet-control-attribution{background:#071923d9!important;color:#a7c3cb!important}.leaflet-control-attribution a{color:#82dfe8!important}.current-dot,.forecast-dot{display:grid;place-items:center;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 5px #ff9c5366}.current-dot{width:21px;height:21px;background:var(--red)}.forecast-dot{width:13px;height:13px;background:var(--amber);box-shadow:0 0 0 3px #ffc76655}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0d2a35;color:#eaf7f9}.leaflet-popup-content{margin:10px 12px}.leaflet-popup-content b{color:var(--amber)}
     /* Mobile text-list fallback — provides accessible alternative to map colors */
     .text-list{display:none;margin-top:16px;background:linear-gradient(145deg,#0c2733,#081b26);border:1px solid var(--line);border-radius:9px;overflow:hidden}.text-list h3{padding:13px 16px;margin:0;font-size:14px;border-bottom:1px solid var(--line)}.text-list table{width:100%;font-size:12px;border-collapse:collapse}.text-list thead{background:#091e29}.text-list th{color:var(--muted);font-weight:400;text-align:left;padding:8px 10px}.text-list td{padding:8px 10px;border-bottom:1px solid #1a3b47;vertical-align:top}.text-list .row-current td{background:#102d3a;font-weight:600}.text-list .row-current td:first-child:before{content:"● ";color:var(--red);font-size:11px}.text-list .row-fc td:first-child:before{content:"● ";color:var(--amber);font-size:9px}
     @media(max-width:920px){.top{align-items:flex-start}.top-actions{flex-wrap:wrap;justify-content:flex-end}.status-strip{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}.map-wrap{height:440px}}@media(max-width:590px){body{font-size:14px}.top{padding:12px 15px;gap:10px}.brand small{display:none}.source-badge{display:none}.layout{padding:15px}.status-strip{grid-template-columns:1fr 1fr;gap:8px}.status-card{padding:11px;min-height:68px}.status-card strong{font-size:14px}.hero{gap:12px}.map-head small{display:none}.map-wrap{height:310px}.side{display:flex;gap:12px}.bottom{gap:12px}.metric b{font-size:17px}.selected dl{grid-template-columns:1fr 1fr}.footer{padding:14px 15px}.map-note{left:9px;right:auto;bottom:9px;font-size:10px;max-width:235px}.text-list{display:block}.track-item{min-height:90px;padding:8px;min-width:44px}.refresh{min-height:44px;min-width:44px}}
+    /* Leaflet core CSS — inlined so tiles always render correctly */
+    .leaflet-pane{position:absolute;left:0;top:0}.leaflet-pane>canvas,.leaflet-pane>svg{position:absolute;left:0;top:0}.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-image-layer,.leaflet-tile,.leaflet-tile-container{position:absolute;left:0;top:0}.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:transparent}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{touch-action:none}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:invert(0.92) hue-rotate(180deg) brightness(0.75) saturate(0.4);visibility:inherit}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{position:absolute;left:0;top:0;z-index:800;border:2px dashed #38f;background:rgba(255,255,255,.5)}.leaflet-control{position:relative;z-index:800;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{transform-origin:0 0}@keyframes leaflet-gestures-fadein{to{opacity:1}}
   </style>
 </head>
 <body>
@@ -28,7 +28,7 @@
       <div class="status-card"><label>数据来源</label><strong>JMA <small>日本气象厅</small></strong></div>
     </section>
     <section class="hero" aria-label="台风路径和指标">
-      <div class="map-shell"><div class="map-head"><h2>当前位置与未来预报路径</h2><small>可拖动、缩放；节点可点选查看</small></div><div class="map-wrap"><div id="map" class="map" aria-label="台风路径地图" role="application"></div><div class="map-empty" id="mapEmpty">尚未取得可用坐标。<br>不会展示虚构的当前位置或路径。</div><div class="map-note" id="mapNote">地图：© OpenStreetMap 贡献者 · © CARTO。风圈和概率圈仅在源数据提供时显示。</div></div></div>
+      <div class="map-shell"><div class="map-head"><h2>当前位置与未来预报路径</h2><small>可拖动、缩放；节点可点选查看</small></div><div class="map-wrap"><div id="map" class="map" aria-label="台风路径地图" role="application"></div><div class="map-empty" id="mapEmpty" hidden>尚未取得可用坐标。<br>不会展示虚构的当前位置或路径。</div><div class="map-note" id="mapNote">地图：© OpenStreetMap 贡献者。风圈和概率圈仅在源数据提供时显示。</div></div></div>
       <aside class="side"><section class="panel"><h2>关键指标</h2><div class="metric-grid"><div class="metric"><label>中心位置</label><b id="position">—</b></div><div class="metric"><label>中心气压</label><b id="pressure">—</b></div><div class="metric"><label>最大风速</label><b id="wind">—</b></div><div class="metric"><label>最大阵风</label><b id="gust">—</b></div><div class="metric"><label>暴风圈</label><b id="stormRadii">—</b></div><div class="metric"><label>强风圈</label><b id="galeRadii">—</b></div><div class="metric"><label>移动速度</label><b id="movement">—</b></div><div class="metric"><label>台风强度</label><b id="intensity">—</b></div></div><p class="data-state" id="dataState" aria-live="polite">等待日本气象厅数据。</p></section><section class="panel selected"><h2>已选时刻</h2><h3 id="selectedTitle">—</h3><dl><div><dt>预报有效时间</dt><dd id="selectedTime">—</dd></div><div><dt>中心气压</dt><dd id="selectedPressure">—</dd></div><div><dt>最大风速</dt><dd id="selectedWind">—</dd></div><div><dt>最大阵风</dt><dd id="selectedGust">—</dd></div><div><dt>移动速度</dt><dd id="selectedMovement">—</dd></div><div><dt>位置</dt><dd id="selectedPosition">—</dd></div></dl></section></aside>
     </section>
     <!-- Mobile text-list: accessible alternative to map colors, visible only on narrow screens -->
@@ -40,25 +40,156 @@
     <section class="bottom"><section class="panel"><h2>官方通报与预警入口</h2><ul class="official-list" role="list"><li role="listitem"><a href="https://typhoon.nmc.cn/web.html" target="_blank" rel="noreferrer">中国气象局台风网</a><small>路径、公报和台风预警的官方入口</small></li><li role="listitem"><a href="https://www.mem.gov.cn/" target="_blank" rel="noreferrer">应急管理部</a><small>防灾减灾与应急处置信息的官方入口</small></li><li role="listitem"><a href="https://www.jma.go.jp/bosai/map.html#5/34.5/137/&elem=root&typhoon=all&contents=typhoon" target="_blank" rel="noreferrer">日本气象厅 JMA</a><small>实时来源与正式预报页面</small></li></ul></section><section class="panel"><h2>信息说明</h2><p class="notice">本页仅显示来源数据与官方入口，不自行推断中国境内灾情或台风登陆结论。</p><p>官方通报与实时路径具有各自发布时间。请在阅读通报时以其页面标注的正式发布时间为准。</p></section><section class="panel"><h2>简短防灾提示</h2><ul><li>关注当地气象、应急部门发布的预警。</li><li>台风影响期间减少非必要的滨海、涉水与高空活动。</li><li>如需出行，请预留时间并遵从交通和海事管制。</li></ul></section></section>
   </main>
   <footer class="footer"><strong>仅供信息参考，请以当地主管部门正式预警为准。</strong>　数据适配：日本气象厅公开多语言端点；页面 5 分钟尝试刷新一次。</footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
-    const API='/api/typhoon', REFRESH_MS=300000; let map, layers, data, selectedIndex=0, nextRefresh=Date.now()+REFRESH_MS;
-    const $=s=>document.querySelector(s), fmt=n=>n===null||n===undefined?'—':n;
-    const asDate=v=>{if(!v)return '未提供';const d=new Date(v);return Number.isNaN(d)?'未提供':new Intl.DateTimeFormat('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'}).format(d)};
-    const pointText=p=>p&&Number.isFinite(p.latitude)&&Number.isFinite(p.longitude)?`${p.latitude.toFixed(1)}°N, ${p.longitude.toFixed(1)}°E`:'未提供';
-    const knots=n=>n===null||n===undefined?'—':`${Math.round(n*0.514444)} m/s`;
-    const kmh=n=>n===null||n===undefined?'—':`${Math.round(n)} km/h`;
-    const kmText=n=>n===null||n===undefined?'—':`${Math.round(n)} km`;
-    function initMap(){if(!window.L)return;map=L.map('map',{zoomControl:true,attributionControl:true}).setView([22,132],4);L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',subdomains:'abcd',maxZoom:19}).addTo(map);layers=L.layerGroup().addTo(map)}
-    function setSelected(index){if(!data)return;selectedIndex=index;const p=[data.current,...data.forecast][index];$('#selectedTitle').textContent=index===0?'当前中心':`预报点 +${index}`;$('#selectedTime').textContent=asDate(p.validAt);$('#selectedPressure').textContent=p.pressureHpa?`${p.pressureHpa} hPa`:'未提供';$('#selectedWind').textContent=knots(p.windKts);$('#selectedGust').textContent=knots(p.gustKts);$('#selectedMovement').textContent=kmh(p.movementKph);$('#selectedPosition').textContent=pointText(p);document.querySelectorAll('.track-item').forEach((b,i)=>b.classList.toggle('active',i===index));}
-    function markerIcon(current){return L.divIcon({className:'',html:`<div class="${current?'current-dot':'forecast-dot'}"></div>`,iconSize:current?[21,21]:[13,13],iconAnchor:current?[10,10]:[6,6]})}
-    function renderMap(){if(!map||!data)return;layers.clearLayers();const points=[data.current,...data.forecast].filter(p=>Number.isFinite(p.latitude)&&Number.isFinite(p.longitude));if(!points.length)return;const latlngs=points.map(p=>[p.latitude,p.longitude]);if(latlngs.length>1)L.polyline(latlngs,{color:'#ffc766',weight:3,dashArray:'7 7',opacity:.95}).addTo(layers);points.forEach((p,i)=>{const marker=L.marker([p.latitude,p.longitude],{icon:markerIcon(i===0),keyboard:true,title:i===0?'当前中心':`预报点 ${i}`}).addTo(layers);marker.bindPopup(`<b>${i===0?'当前中心':`预报点 +${i}`}</b><br>${asDate(p.validAt)}<br>${pointText(p)}`);marker.on('click',()=>setSelected(i))});const r=data.windRadii||{};if(r.stormKm)L.circle(latlngs[0],{radius:r.stormKm*1000,color:'#ff756d',fillColor:'#ff756d',fillOpacity:.08,weight:1}).addTo(layers).bindTooltip('暴风圈（源数据）');if(r.galeKm)L.circle(latlngs[0],{radius:r.galeKm*1000,color:'#63e4ed',fillColor:'#63e4ed',fillOpacity:.05,weight:1}).addTo(layers).bindTooltip('强风圈（源数据）');const probability=data.current.probabilityRadiusKm;if(probability)L.circle(latlngs[0],{radius:probability*1000,color:'#d8bdff',fillOpacity:0,weight:1,dashArray:'4 6'}).addTo(layers).bindTooltip('概率圈（源数据）');map.fitBounds(L.latLngBounds(latlngs),{padding:[42,42],maxZoom:6});$('#mapEmpty').hidden=true;}
-    function renderTimeline(){const track=$('#track');track.innerHTML='';if(!data)return;[data.current,...data.forecast].forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='track-item';b.setAttribute('role','listitem');b.innerHTML=`<time>${i===0?'当前中心':asDate(p.validAt)}</time><b>${p.intensity||'强度未提供'}</b><small>${p.pressureHpa?`${p.pressureHpa} hPa · `:''}${knots(p.windKts)}</small>`;b.onclick=()=>setSelected(i);track.append(b)})}
-    function renderMetrics(){const p=data.current;$('#position').textContent=pointText(p);$('#pressure').innerHTML=p.pressureHpa?`${p.pressureHpa} <small>hPa</small>`:'—';$('#wind').innerHTML=p.windKts?`${Math.round(p.windKts*.514444)} <small>m/s</small>`:'—';$('#gust').innerHTML=p.gustKts?`${Math.round(p.gustKts*.514444)} <small>m/s</small>`:'—';const r=data.windRadii||{};$('#stormRadii').innerHTML=r.stormKm?`${Math.round(r.stormKm)} <small>km</small>`:'—';$('#galeRadii').innerHTML=r.galeKm?`${Math.round(r.galeKm)} <small>km</small>`:'—';$('#movement').innerHTML=p.movementKph?`${Math.round(p.movementKph)} <small>km/h</small>`:'—';$('#intensity').textContent=p.intensity||data.storm.status||'未提供';$('#publishedAt').textContent=asDate(data.source.publishedAt);renderTextList();}
-    function renderTextList(){const body=$('#textListBody');body.innerHTML='';if(!data)return;const points=[data.current,...data.forecast];points.forEach((p,i)=>{const tr=document.createElement('tr');tr.className=i===0?'row-current':'row-fc';tr.innerHTML=`<td>${i===0?'当前':asDate(p.validAt)}</td><td>${pointText(p)}</td><td>${p.pressureHpa?p.pressureHpa+' hPa':'—'}</td><td>${p.windKts?Math.round(p.windKts*.514444)+' m/s':'—'}</td><td>${p.intensity||'—'}</td>`;tr.onclick=()=>setSelected(i);tr.style.cursor='pointer';body.append(tr)})}
-    function renderSelected(){if(!data)return;setSelected(selectedIndex);}
-    async function load(){const button=$('#refresh');button.disabled=true;$('#stateText').textContent='正在更新…';try{const r=await fetch(API,{cache:'no-store'}),body=await r.json();if(!r.ok)throw new Error(body.detail||body.error||'接口不可用');data=body;selectedIndex=0;renderMetrics();renderTimeline();renderMap();renderSelected();const stale=body.meta&&body.meta.stale;$('#stateText').innerHTML=stale?'<span class="amber">更新失败 · 使用缓存</span>':'<span class="good">数据已更新</span>';const ds=$('#dataState');ds.className='data-state'+(stale?' stale':'');ds.textContent=stale?(body.meta.error||'更新失败，正在展示最后一次成功数据。'):`数据源：${body.source.provider} · 发布 ${asDate(body.source.publishedAt)} · 获取 ${asDate(body.source.fetchedAt)}`;nextRefresh=Date.now()+REFRESH_MS}catch(error){$('#stateText').innerHTML='<span class="bad">更新失败</span>';const ds=$('#dataState');ds.className='data-state error';ds.textContent=`无法取得有效数据：${error.message}。${data?'仍保留上一次成功数据。':'不会展示虚构的默认数据。'}`;if(!data)$('#mapEmpty').hidden=false;nextRefresh=Date.now()+60000}finally{button.disabled=false}}
-    function tick(){const left=Math.max(0,Math.ceil((nextRefresh-Date.now())/1000));$('#countdown').textContent=`${String(Math.floor(left/60)).padStart(2,'0')}:${String(left%60).padStart(2,'0')}`;if(left===0)load()}$('#refresh').onclick=load;initMap();load();setInterval(tick,1000);
+    // ===== State =====
+    var API='/api/typhoon', REFRESH_MS=300000;
+    var map=null, layers=null, data=null, selectedIndex=0, nextRefresh=Date.now()+REFRESH_MS;
+
+    // ===== Helpers =====
+    var $=function(s){return document.querySelector(s)};
+    var asDate=function(v){if(!v)return'未提供';var d=new Date(v);return isNaN(d.getTime())?'未提供':d.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'})};
+    var pointText=function(p){return p&&isFinite(p.latitude)&&isFinite(p.longitude)?p.latitude.toFixed(1)+'°N, '+p.longitude.toFixed(1)+'°E':'未提供'};
+    var knots=function(n){return n==null?'—':Math.round(n*0.514444)+' m/s'};
+    var kmh=function(n){return n==null?'—':Math.round(n)+' km/h'};
+
+    // ===== Map init (safe to call multiple times) =====
+    function initMap(){
+      if(map)return;                        // already initialized
+      if(!window.L)return;                  // Leaflet not loaded yet
+      map=L.map('map',{zoomControl:true,attributionControl:true}).setView([22,132],4);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>',maxZoom:19}).addTo(map);
+      layers=L.layerGroup().addTo(map);
+    }
+
+    // ===== Leaflet dynamic load (jsdelivr → unpkg fallback) =====
+    (function(){
+      var s=document.createElement('script');
+      s.src='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js';
+      s.onload=function(){initMap();if(data)renderMap();};
+      s.onerror=function(){
+        var f=document.createElement('script');
+        f.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        f.onload=function(){initMap();if(data)renderMap();};
+        document.head.append(f);
+      };
+      document.head.append(s);
+    })();
+
+    // ===== Marker icon =====
+    function markerIcon(cur){
+      return L.divIcon({className:'',html:'<div class=\"'+(cur?'current-dot':'forecast-dot')+'\"></div>',iconSize:cur?[21,21]:[13,13],iconAnchor:cur?[10,10]:[6,6]});
+    }
+
+    // ===== Render map markers + path + circles =====
+    function renderMap(){
+      if(!map||!layers||!data)return;
+      try {
+        var pts=[data.current].concat(data.forecast).filter(function(p){return isFinite(p.latitude)&&isFinite(p.longitude)});
+        if(!pts.length)return;
+        layers.clearLayers();
+        var ll=pts.map(function(p){return[p.latitude,p.longitude]});
+        if(ll.length>1)L.polyline(ll,{color:'#ffc766',weight:3,dashArray:'7 7',opacity:.95}).addTo(layers);
+        pts.forEach(function(p,i){
+          var mk=L.marker([p.latitude,p.longitude],{icon:markerIcon(i===0),title:i===0?'当前中心':'预报点 '+i}).addTo(layers);
+          mk.bindPopup('<b>'+(i===0?'当前中心':'预报点 +'+i)+'</b><br>'+asDate(p.validAt)+'<br>'+pointText(p));
+          mk.on('click',function(){setSelected(i)});
+        });
+        var r=data.windRadii||{};
+        if(r.stormKm)L.circle(ll[0],{radius:r.stormKm*1000,color:'#ff756d',fillColor:'#ff756d',fillOpacity:.08,weight:1}).addTo(layers).bindTooltip('暴风圈');
+        if(r.galeKm)L.circle(ll[0],{radius:r.galeKm*1000,color:'#63e4ed',fillColor:'#63e4ed',fillOpacity:.05,weight:1}).addTo(layers).bindTooltip('强风圈');
+        var prob=data.current.probabilityRadiusKm;
+        if(prob)L.circle(ll[0],{radius:prob*1000,color:'#d8bdff',fillOpacity:0,weight:1,dashArray:'4 6'}).addTo(layers).bindTooltip('概率圈');
+        map.fitBounds(L.latLngBounds(ll),{padding:[42,42],maxZoom:6});
+        $('#mapEmpty').hidden=true;
+      } catch(e){console.error('renderMap:',e);}
+    }
+
+    // ===== Set selected moment =====
+    function setSelected(index){
+      if(!data)return;
+      selectedIndex=index;
+      var p=[data.current].concat(data.forecast)[index];
+      $('#selectedTitle').textContent=index===0?'当前中心':'预报点 +'+index;
+      $('#selectedTime').textContent=asDate(p.validAt);
+      $('#selectedPressure').textContent=p.pressureHpa?p.pressureHpa+' hPa':'未提供';
+      $('#selectedWind').textContent=knots(p.windKts);
+      $('#selectedGust').textContent=knots(p.gustKts);
+      $('#selectedMovement').textContent=kmh(p.movementKph);
+      $('#selectedPosition').textContent=pointText(p);
+      var items=document.querySelectorAll('.track-item');
+      for(var i=0;i<items.length;i++)items[i].classList.toggle('active',i===index);
+    }
+
+    // ===== Render timeline track =====
+    function renderTimeline(){
+      var track=$('#track');track.innerHTML='';
+      if(!data)return;
+      var all=[data.current].concat(data.forecast);
+      all.forEach(function(p,i){
+        var b=document.createElement('button');b.type='button';b.className='track-item';b.setAttribute('role','listitem');
+        b.innerHTML='<time>'+(i===0?'当前中心':asDate(p.validAt))+'</time><b>'+(p.intensity||'强度未提供')+'</b><small>'+(p.pressureHpa?p.pressureHpa+' hPa · ':'')+knots(p.windKts)+'</small>';
+        b.onclick=function(){setSelected(i)};
+        track.append(b);
+      });
+    }
+
+    // ===== Render metrics panel =====
+    function renderMetrics(){
+      var p=data.current,r=data.windRadii||{};
+      $('#position').textContent=pointText(p);
+      $('#pressure').innerHTML=p.pressureHpa?p.pressureHpa+' <small>hPa</small>':'—';
+      $('#wind').innerHTML=p.windKts?Math.round(p.windKts*0.514444)+' <small>m/s</small>':'—';
+      $('#gust').innerHTML=p.gustKts?Math.round(p.gustKts*0.514444)+' <small>m/s</small>':'—';
+      $('#stormRadii').innerHTML=r.stormKm?Math.round(r.stormKm)+' <small>km</small>':'—';
+      $('#galeRadii').innerHTML=r.galeKm?Math.round(r.galeKm)+' <small>km</small>':'—';
+      $('#movement').innerHTML=p.movementKph?Math.round(p.movementKph)+' <small>km/h</small>':'—';
+      $('#intensity').textContent=p.intensity||data.storm.status||'未提供';
+      $('#publishedAt').textContent=asDate(data.source.publishedAt);
+      // mobile text list
+      var body=$('#textListBody');body.innerHTML='';
+      var pts=[data.current].concat(data.forecast);
+      pts.forEach(function(p,i){
+        var tr=document.createElement('tr');tr.className=i===0?'row-current':'row-fc';
+        tr.innerHTML='<td>'+(i===0?'当前':asDate(p.validAt))+'</td><td>'+pointText(p)+'</td><td>'+(p.pressureHpa?p.pressureHpa+' hPa':'—')+'</td><td>'+(p.windKts?Math.round(p.windKts*0.514444)+' m/s':'—')+'</td><td>'+(p.intensity||'—')+'</td>';
+        tr.onclick=function(){setSelected(i)};tr.style.cursor='pointer';
+        body.append(tr);
+      });
+    }
+
+    function renderSelected(){if(data)setSelected(selectedIndex);}
+
+    // ===== Fetch and render =====
+    async function load(){
+      var btn=$('#refresh');btn.disabled=true;$('#stateText').textContent='正在更新…';
+      try {
+        var r=await fetch(API,{cache:'no-store'}),body=await r.json();
+        if(!r.ok)throw new Error(body.detail||body.error||'接口不可用');
+        data=body;selectedIndex=0;
+        renderMetrics();renderTimeline();renderMap();renderSelected();
+        var stale=body.meta&&body.meta.stale;
+        $('#stateText').innerHTML=stale?'<span class=\"amber\">更新失败 · 使用缓存</span>':'<span class=\"good\">数据已更新</span>';
+        var ds=$('#dataState');ds.className='data-state'+(stale?' stale':'');
+        ds.textContent=stale?(body.meta.error||'更新失败，正在展示最后一次成功数据。'):'数据源：'+body.source.provider+' · 发布 '+asDate(body.source.publishedAt)+' · 获取 '+asDate(body.source.fetchedAt);
+        nextRefresh=Date.now()+REFRESH_MS;
+      } catch(e){
+        $('#stateText').innerHTML='<span class=\"bad\">更新失败</span>';
+        var ds=$('#dataState');ds.className='data-state error';
+        ds.textContent='无法取得有效数据：'+e.message+'。'+(data?'仍保留上一次成功数据。':'不会展示虚构的默认数据。');
+        if(!data)$('#mapEmpty').hidden=false;
+        nextRefresh=Date.now()+60000;
+      } finally {btn.disabled=false;}
+    }
+
+    function tick(){
+      var left=Math.max(0,Math.ceil((nextRefresh-Date.now())/1000));
+      $('#countdown').textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');
+      if(left===0)load();
+    }
+
+    // ===== Start =====
+    $('#refresh').onclick=load;
+    load();
+    setInterval(tick,1000);
   </script>
 </body>
 </html>
